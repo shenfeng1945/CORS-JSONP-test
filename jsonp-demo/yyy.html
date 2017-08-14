@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    hello,{{data}}
+</body>
+<script>
+    jsonp('http://xxx.com/xxx.js',function(data){
+        console.log(data)
+    })
+    function jsonp(url,fn){
+       let functionName = 'allen' + parseInt(Math.random()*1000)
+       window[functionName] = fn
+       let script = document.createElement('script')
+       script.src = url +'?callback=' + functionName
+       document.head.appendChild(script)
+    }
+</script>
+</html>
